@@ -1,0 +1,28 @@
+<resources>
+    <string name="app_name">SampleApp</string>
+
+    <string name="unknown_error_title">Something happened</string>
+    <string name="unknown_error_description">An unknown error happened, please try again</string>
+    <string name="unknown_network_error_title">Network error</string>
+    <string name="unknown_network_error_description">You may have lost connection or there is a network issue</string>
+    <string name="unauthorized">Unauthorized</string>
+    <string name="unauthorized_error_description">You need to sign in to continue</string>
+
+    <!-- Log In -->
+    <string name="log_in_email_label">Email</string>
+    <string name="log_in_email_error_required">Email is required</string>
+    <string name="log_in_email_error_format">Email format is not valid</string>
+    <string name="log_in_password_label">Password</string>
+    <string name="log_in_password_error_required">Password is required</string>
+    <string name="log_in_password_error_format">Password must contain a lower case, upper case, a number and a special character</string>
+    <string name="log_in_password_error_min_length">Password must contain at least %s characters</string>
+    <string name="log_in_button">LOG IN</string>
+
+    <!-- Settings -->
+    <string name="settings_title">Settings</string>
+    <string name="settings_dark_light_theme">Dark/Light Appearance</string>
+    <string name="content_description_navigation_icon">Navigation Icon</string>
+    <string name="content_description_theme_icon">Theme Icon</string>
+    <string name="email">Email: %1$s</string>
+
+</resources>
