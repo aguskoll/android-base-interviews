@@ -21,7 +21,7 @@ plugins {
 }
 
 android {
-    namespace = "com.rootstrap.data"
+    namespace = "com.aguskoll.data"
 
     with(Dependencies.ConfigData) {
         compileSdk = COMPILE_SDK_VERSION

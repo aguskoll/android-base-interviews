@@ -10,7 +10,7 @@ plugins {
 }
 
 android {
-    namespace = "com.rootstrap.di"
+    namespace = "com.aguskoll.di"
     compileSdk = COMPILE_SDK_VERSION
 
     defaultConfig {

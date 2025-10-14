@@ -8,7 +8,7 @@ plugins {
 }
 
 android {
-    namespace = "com.rootstrap"
+    namespace = "com.aguskoll"
 
     with(Dependencies.ConfigData) {
         compileSdk = COMPILE_SDK_VERSION
