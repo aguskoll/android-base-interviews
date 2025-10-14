@@ -14,3 +14,7 @@ java {
 dependencies {
     implementation(COROUTINES_CORE)
 }
+
+kotlin {
+    jvmToolchain(17)
+}

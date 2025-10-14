@@ -3,7 +3,7 @@ import Dependencies.Common.JAVA_TARGET
 import Dependencies.Common.JAVA_VERSION
 import Dependencies.Kotlin.COROUTINES_ANDROID
 import Dependencies.Network.OKHTTP
-import Dependencies.Network.OKHTTP_BOM
+//import Dependencies.Network.OKHTTP_BOM
 import Dependencies.Network.OKHTTP_LOGGING_INTERCEPTOR
 import Dependencies.Network.RETROFIT
 import Dependencies.Network.RETROFIT_KTX_CONVERTER
@@ -28,7 +28,6 @@ android {
 
         defaultConfig {
             minSdk = MIN_SDK_VERSION
-            targetSdk = TARGET_SDK_VERSION
         }
     }
 
@@ -54,6 +53,10 @@ android {
     }
 }
 
+kotlin {
+    jvmToolchain(17)
+}
+
 dependencies {
     implementation(project(":core:domain"))
     implementation(project(":core:usecases"))
@@ -63,10 +66,10 @@ dependencies {
     implementation(Dependencies.Kotlin.SERIALIZATION)
     implementation(RETROFIT)
     implementation(RETROFIT_KTX_CONVERTER)
-    implementation(OKHTTP_BOM)
-    implementation(OKHTTP_LOGGING_INTERCEPTOR)
-
+    // Using BOM for OkHttp version management
+    //implementation(platform(OKHTTP_BOM))
     implementation(OKHTTP)
+    implementation("com.squareup.okhttp3:logging-interceptor:5.2.1")
 
     testImplementation(OKHTTP_MOCK_WEBSERVER)
     testImplementation(JUNIT)
