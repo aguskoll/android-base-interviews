@@ -38,12 +38,8 @@ package com.aguskoll.androidcomposebase.ui.navigation
  * **/
 
 sealed class MainRoutes(val route: String) {
-    /*
-    Example of nav with arg
-    object BusinessDetailPage : NavRoutes("business_details/{id}") {
-        fun withArg(id: String) = "business_details/$id"
-    }*/
     object MainPage : MainRoutes("main")
+    object LoginPage : MainRoutes("login")
     object ErrorPage : MainRoutes("error/{message}") {
         fun withArg(errorMessage: String) = "error/$errorMessage"
     }

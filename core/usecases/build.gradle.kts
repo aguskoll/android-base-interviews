@@ -13,3 +13,7 @@ java {
 dependencies {
     implementation(project(":core:domain"))
 }
+
+kotlin {
+    jvmToolchain(17)
+}

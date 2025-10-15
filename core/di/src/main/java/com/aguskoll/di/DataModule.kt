@@ -1,9 +1,11 @@
 package com.aguskoll.di
 
+import AuthRepository
 import com.aguskoll.data.network.ApiProvider
 import com.aguskoll.data.network.AuthInterceptor
 import com.aguskoll.data.network.HttpClientProvider
 import com.aguskoll.data.network.HttpClientProviderImpl
+import com.aguskoll.data.repositories.AuthRepositoryImpl
 import com.aguskoll.data.store.PreferencesDataStore
 import com.aguskoll.data.utils.Constants.MegaBytes50
 import com.aguskoll.data.utils.CoroutineErrorHandler
@@ -34,6 +36,7 @@ val dataModule = module {
             errorNotifier = get()
         )
     }
+    single<AuthRepository> { AuthRepositoryImpl() }
 }
 
 @OptIn(ExperimentalSerializationApi::class)
