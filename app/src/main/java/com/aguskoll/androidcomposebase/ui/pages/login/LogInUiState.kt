@@ -7,8 +7,8 @@ data class LogInUiState(
     val emailErrorCode: String? = null,
     val password: String = "",
     val passwordErrorCode: String? = null,
-    val isPasswordValid: Boolean = false,
-    val isEmailValid: Boolean = false,
+    val isPasswordValid: Boolean = true,
+    val isEmailValid: Boolean = true,
     val isFormValid: Boolean = false,
     val isLoading: Boolean = false
 ) : UiState

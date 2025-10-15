@@ -4,31 +4,28 @@ import android.content.res.Configuration
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
-import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
-import androidx.compose.foundation.layout.height
+import androidx.compose.foundation.layout.padding
 import androidx.compose.material3.Button
+import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.material3.TextField
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.getValue
-import androidx.compose.runtime.mutableStateOf
-import androidx.compose.runtime.remember
-import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.graphics.Color
-import androidx.compose.ui.text.input.PasswordVisualTransformation
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
-import androidx.compose.ui.unit.dp
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
+import com.aguskoll.R
+import com.aguskoll.androidcomposebase.ui.common.PasswordTextField
+import com.aguskoll.androidcomposebase.ui.theme.defaultDimensions
 import org.koin.androidx.compose.koinViewModel
 
 @Composable
 fun LoginPage(onLoginSuccess: () -> Unit) {
-    var userNameInput by remember { mutableStateOf("") }
     val viewModel: LogInViewModel = koinViewModel()
     val uiState by viewModel.uiStateFlow.collectAsStateWithLifecycle()
     val event: LoginEvent? by viewModel.eventFlow.collectAsStateWithLifecycle(null)
@@ -46,44 +43,40 @@ fun LoginPage(onLoginSuccess: () -> Unit) {
         }
     }
     Box(modifier = Modifier.fillMaxSize(), contentAlignment = Alignment.Center) {
-        Column(verticalArrangement = Arrangement.spacedBy(16.dp)) {
-            Text("Welcome")
+        Column(
+            horizontalAlignment = Alignment.CenterHorizontally,
+            verticalArrangement = Arrangement.spacedBy(defaultDimensions.paddingDouble),
+            modifier = Modifier.padding(defaultDimensions.paddingDouble)
+        ) {
+            Text(stringResource(R.string.log_in_welcome))
             TextField(
                 value = uiState.email,
+                modifier = Modifier.fillMaxWidth(),
                 onValueChange = { value ->
                     viewModel.onEmailChanged(value)
                 },
-                label = { Text("Email") },
+                label = { Text(stringResource(R.string.log_in_email_label)) },
                 isError = !uiState.isEmailValid,
                 supportingText = {
                     if (!uiState.isEmailValid) {
-                        "Email must be valid"
+                        Text(
+                            stringResource(R.string.log_in_email_error),
+                            color = MaterialTheme.colorScheme.error
+                        )
                     }
                 }
             )
-            Spacer(modifier = Modifier.height(8.dp))
-            TextField(
+            PasswordTextField(
                 value = uiState.password,
                 modifier = Modifier.fillMaxWidth(),
-                label = { Text("Password") },
-                singleLine = true,
-                visualTransformation = PasswordVisualTransformation(),
-                onValueChange = {
+                onChange = {
                     viewModel.onPasswordChanged(it)
                 },
                 isError = !uiState.isPasswordValid,
-                supportingText = {
-                    if (!uiState.isPasswordValid) {
-                      Text(
-                          "Password must be at least 8 characters long",
-                          color = Color.Red,
-                      )
-
-                    }
-                },
+                errorText = stringResource(R.string.log_in_password_error),
             )
             Button(onClick = { viewModel.onLoginClick() }) {
-                Text("Login")
+                Text(stringResource(R.string.log_in_button))
             }
         }
     }
